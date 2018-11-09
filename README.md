@@ -4,7 +4,7 @@
 Create a new class called NetworkUtils. 
 Define the appropriate base_url and any needed parameter constants (make sure they are Java constants) here as static class members.
 Create a public static method in NetworkUtils that uses Uri.Builder to build the appropriate url, the same url as above, and returns a Java URL object. 
-Name it buildURL. Put this method in your NetworkUtils class: (tested with NetworkUnitTest)
+Name it buildURL.
 Set up permissions to use the internet in the manifest. (if you don't, you will lose a lot of points)
 Extend and implement a subclass of AsyncTask, call it NewsQueryTask, to handle the http request, and have its doInBackground. 
 Use NeworkUtils.getRsponsFromHttpUrl to get the json result string. Return the string.
