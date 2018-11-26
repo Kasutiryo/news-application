@@ -19,7 +19,6 @@ public class NewsItemViewModel extends AndroidViewModel {
     }
 
     LiveData<List<NewsItem>> loadAllNewsItems() {
-
         return mAllNewsItems;
     }
 }

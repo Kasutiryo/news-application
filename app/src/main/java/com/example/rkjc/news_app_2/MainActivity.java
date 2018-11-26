@@ -50,12 +50,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.action_search) {
-            mNewsItemViewModel.loadAllNewsItems().observe(this, new Observer<List<NewsItem>>() {
-                @Override
-                public void onChanged(@Nullable List<NewsItem> newsItems) {
-                    mAdapter.setNewsItems(newsItems);
-                }
-            });            Toast.makeText(this, "News updated!", Toast.LENGTH_SHORT).show();
+            new NewsItemRepository(mNewsItemViewModel.getApplication()).insert(null);
+            Toast.makeText(this, "News updated!", Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
