@@ -13,16 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerViewAdapter.NewsViewHolder> {
 
-    private LinkedList<NewsItem> mNewsItems;
+    private List<NewsItem> mNewsItems;
     private LayoutInflater mInflater;
 
-    public NewsRecyclerViewAdapter(Context context, LinkedList<NewsItem> mNewsItems) {
+    public NewsRecyclerViewAdapter(Context context/*, LinkedList<NewsItem> mNewsItems*/) {
         mInflater = LayoutInflater.from(context);
-        this.mNewsItems = mNewsItems;
+//        this.mNewsItems = mNewsItems;
     }
 
     @NonNull
@@ -32,20 +33,33 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
         NewsViewHolder holder = new NewsViewHolder(mItemView, this);
         mItemView.setOnClickListener(holder);
         return holder;
+
+//        return new NewsViewHolder(mItemView, this);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NewsRecyclerViewAdapter.NewsViewHolder holder, int position) {
-        NewsItem mCurrent = mNewsItems.get(position);
-        holder.mTitle.setText(mCurrent.getTitle());
-        holder.mDescription.setText(mCurrent.getDescription());
-        holder.mDate.setText(mCurrent.getDate());
-        holder.mNewsLink = mCurrent.getUrl();
+        if (mNewsItems != null) {
+            NewsItem mCurrent = mNewsItems.get(position);
+            holder.mTitle.setText("Title: " + mCurrent.getTitle());
+            holder.mDescription.setText(mCurrent.getDescription());
+            holder.mDate.setText(mCurrent.getDate());
+            holder.mNewsLink = mCurrent.getURL();
+        } else {
+            holder.mDescription.setText("Oops! There is no news to show!");
+        }
     }
 
+    void setNewsItems(List<NewsItem> newsItems) {
+        mNewsItems = newsItems;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
-        return mNewsItems.size();
+        if (mNewsItems != null) {
+            return mNewsItems.size();
+        }
+        else return 0;
     }
 
     class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -71,7 +85,7 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
         public void onClick(View v) {
             Toast.makeText(v.getContext(), "Open Website", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mNewsLink));
-            //finds a activity (i.e app or service) to handle the intent and start the activity
+
             if (intent.resolveActivity(v.getContext().getPackageManager()) != null) {
                 v.getContext().startActivity(intent);
             } else {

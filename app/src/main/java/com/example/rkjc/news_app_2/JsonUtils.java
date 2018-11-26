@@ -4,12 +4,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class JsonUtils {
 
-    public static LinkedList<NewsItem> parseNews(String JSONString) {
-        LinkedList<NewsItem> newsItems = new LinkedList<>();
+    public static List<NewsItem> parseNews(String JSONString) {
+        List<NewsItem> newsItems = new LinkedList<>();
         try {
             JSONObject jObject = new JSONObject(JSONString);
             JSONArray jArray = jObject.getJSONArray("articles");
