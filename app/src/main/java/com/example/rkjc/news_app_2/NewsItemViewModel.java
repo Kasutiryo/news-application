@@ -22,11 +22,4 @@ public class NewsItemViewModel extends AndroidViewModel {
 
         return mAllNewsItems;
     }
-
-    public void insert(List<NewsItem> newsItem) {
-
-        mRepository.insert(newsItem);
-    }
-
-
 }

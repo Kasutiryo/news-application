@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -21,9 +20,8 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
     private List<NewsItem> mNewsItems;
     private LayoutInflater mInflater;
 
-    public NewsRecyclerViewAdapter(Context context/*, LinkedList<NewsItem> mNewsItems*/) {
+    public NewsRecyclerViewAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
-//        this.mNewsItems = mNewsItems;
     }
 
     @NonNull
@@ -33,8 +31,6 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
         NewsViewHolder holder = new NewsViewHolder(mItemView, this);
         mItemView.setOnClickListener(holder);
         return holder;
-
-//        return new NewsViewHolder(mItemView, this);
     }
 
     @Override
