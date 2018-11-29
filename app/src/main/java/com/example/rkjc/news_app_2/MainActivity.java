@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 mAdapter.setNewsItems(newsItems);
             }
         });
+
+        NewsSyncUtil.scheduleFireBaseJobDispatcherSync(this);
     }
 
     @Override
