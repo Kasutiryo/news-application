@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
 
-
 public class NewsFirebaseJobService extends JobService {
 
     private AsyncTask mFetchNewsTask;

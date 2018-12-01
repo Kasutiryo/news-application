@@ -9,18 +9,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+import com.squareup.picasso.Picasso;
 
-
+/**
+ * Adapter class to populate the news_item layout with the necessary information
+ */
 public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerViewAdapter.NewsViewHolder> {
 
     private List<NewsItem> mNewsItems;
     private LayoutInflater mInflater;
 
     public NewsRecyclerViewAdapter(Context context) {
+
         mInflater = LayoutInflater.from(context);
     }
 
@@ -41,6 +46,12 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
             holder.mDescription.setText(mCurrent.getDescription());
             holder.mDate.setText(mCurrent.getDate());
             holder.mNewsLink = mCurrent.getURL();
+
+            if(mCurrent.getURLToImage() != null){
+                Picasso.get()
+                        .load(mCurrent.getURLToImage())
+                        .into(holder.mImage);
+            }
         } else {
             holder.mDescription.setText("Oops! There is no news to show!");
         }
@@ -66,6 +77,8 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
         public final TextView mTitle;
         public final TextView mDescription;
         public final TextView mDate;
+
+        public final ImageView mImage;
         public String mNewsLink;
         final NewsRecyclerViewAdapter mAdapter;
 
@@ -74,6 +87,7 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
             mTitle = itemView.findViewById(R.id.news_item_title);
             mDescription = itemView.findViewById(R.id.news_item_description);
             mDate = itemView.findViewById(R.id.news_item_date);
+            mImage = itemView.findViewById(R.id.news_item_image);
             this.mAdapter = adapter;
         }
 

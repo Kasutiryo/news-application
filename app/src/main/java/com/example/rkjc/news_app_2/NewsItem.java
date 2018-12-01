@@ -5,6 +5,9 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+/**
+ * News Item Model, Entity for room ORM and MVVM Architecture
+ */
 @Entity(tableName = "news_item")
 public class NewsItem {
 
@@ -16,21 +19,24 @@ public class NewsItem {
     private String description;
     private String date;
     private String URL;
+    private String URLToImage;
 
-    public NewsItem (@NonNull int ID, String title, String description, String date, String URL) {
+    public NewsItem (@NonNull int ID, String title, String description, String date, String URL, String URLToImage) {
         this.ID = ID;
         this.title = title;
         this.description = description;
         this.date = date;
         this.URL = URL;
+        this.URLToImage = URLToImage;
     }
 
     @Ignore
-    public NewsItem (String title, String description, String date, String URL) {
+    public NewsItem (String title, String description, String date, String URL, String URLToImage) {
         this.title = title;
         this.description = description;
         this.date = date;
         this.URL = URL;
+        this.URLToImage = URLToImage;
     }
 
     public String getDescription() {
@@ -50,4 +56,6 @@ public class NewsItem {
     }
 
     public int getID() { return ID; }
+
+    public String getURLToImage() { return URLToImage; }
 }
