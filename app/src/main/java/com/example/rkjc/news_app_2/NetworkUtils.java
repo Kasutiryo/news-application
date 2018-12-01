@@ -10,6 +10,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
+/**
+ * Helper class to build the URL and make a request to the internet
+ * using the URL
+ */
 public class NetworkUtils {
 
     private static final String LOG_TAG =
@@ -22,6 +26,10 @@ public class NetworkUtils {
     private final static String API_KEY = "4a8af76c847f4fa89e4d02ac8b3498ed";
 
 
+    /**
+     * Builds the URL
+     * @return URL to News API
+     */
     public static URL buildUrl() {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .appendQueryParameter(PARAM_SOURCE, "ign")
@@ -39,6 +47,12 @@ public class NetworkUtils {
         return url;
     }
 
+    /**
+     * Connects to the network with a given URL
+     * @param url URL to a website
+     * @return JSON String from the website it called
+     * @throws IOException
+     */
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {

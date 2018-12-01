@@ -7,8 +7,16 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Helper class to parse a JSON String from the News API into a LinkedList of NewsItems
+ */
 public class JsonUtils {
 
+    /**
+     *
+     * @param JSONString A JSON String from www.newsapi.org
+     * @return A list of parsed NewsItems in the form of a List<NewsItem>
+     */
     public static List<NewsItem> parseNews(String JSONString) {
         List<NewsItem> newsItems = new LinkedList<>();
         try {
@@ -21,7 +29,8 @@ public class JsonUtils {
                                 obj.getString("title"),
                                 obj.getString("description"),
                                 obj.getString("publishedAt"),
-                                obj.getString("url")));
+                                obj.getString("url"),
+                                obj.getString("urlToImage")));
             }
         } catch (JSONException e) {
             e.printStackTrace();
